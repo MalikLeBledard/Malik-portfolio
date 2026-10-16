@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fred Studio — Growth services for ambitious brands</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root { --ink: #0b0b14; --muted: #5b5b72; --line: #e6e6f0; --accent: #4f46e5; --accent-2: #06b6d4; --bg: #f7f7fb; }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--ink); }
+      a { color: inherit; text-decoration: none; }
+      #field { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; }
+      main, nav, footer { position: relative; z-index: 1; }
+
+      nav { display: flex; align-items: center; justify-content: space-between; padding: 26px 6vw; }
+      .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 22px; }
+      .logo i { width: 28px; height: 28px; border-radius: 9px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: inline-block; }
+      .links { display: flex; gap: 34px; color: var(--muted); font-weight: 500; }
+      .links a:hover { color: var(--ink); }
+      .btn { display: inline-flex; align-items: center; gap: 10px; border-radius: 14px; padding: 14px 24px; font-weight: 600; background: var(--ink); color: #fff; transition: transform .2s, box-shadow .2s; }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -14px rgba(79, 70, 229, .7); }
+      .btn.light { background: rgba(255, 255, 255, .8); color: var(--ink); border: 1px solid var(--line); backdrop-filter: blur(8px); }
+
+      .hero { min-height: calc(100vh - 92px); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 6vw 100px; }
+      .pill { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 8px; border-radius: 999px; background: rgba(255, 255, 255, .85); border: 1px solid var(--line); font-size: 14px; color: var(--muted); backdrop-filter: blur(8px); }
+      .pill b { background: var(--accent); color: #fff; border-radius: 999px; padding: 4px 10px; font-size: 12px; }
+      h1 { font-size: clamp(48px, 7.2vw, 112px); line-height: .98; letter-spacing: -3px; margin: 28px 0 24px; max-width: 1100px; }
+      h1 span { background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .lead { font-size: 20px; color: var(--muted); max-width: 620px; line-height: 1.6; }
+      .ctas { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; justify-content: center; }
+      .trust { display: flex; gap: 44px; margin-top: 70px; color: #9a9ab0; font-weight: 700; font-size: 20px; letter-spacing: 1px; flex-wrap: wrap; justify-content: center; }
+
+      section { padding: 110px 6vw; }
+      .head { text-align: center; margin-bottom: 60px; }
+      .head small { color: var(--accent); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+      h2 { font-size: clamp(38px, 4.6vw, 64px); letter-spacing: -2px; line-height: 1.05; margin-top: 12px; }
+      .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1200px; margin: 0 auto; }
+      .card { background: rgba(255, 255, 255, .86); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 26px; padding: 34px; display: flex; flex-direction: column; transition: transform .25s, border-color .25s, box-shadow .25s; }
+      .card:hover { transform: translateY(-6px); border-color: #c7c4f7; box-shadow: 0 30px 60px -36px rgba(79, 70, 229, .55); }
+      .card.featured { background: var(--ink); color: #fff; border-color: var(--ink); }
+      .icon { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font-size: 24px; background: #eef0ff; margin-bottom: 26px; }
+      .featured .icon { background: rgba(255, 255, 255, .1); }
+      .card h3 { font-size: 24px; letter-spacing: -.5px; }
+      .card p { color: var(--muted); margin: 10px 0 24px; line-height: 1.6; }
+      .featured p { color: #b6b6cc; }
+      .card ul { list-style: none; display: grid; gap: 10px; margin-bottom: 30px; font-size: 15px; }
+      .card li::before { content: '✓'; color: var(--accent); font-weight: 700; margin-right: 10px; }
+      .featured li::before { color: var(--accent-2); }
+      .price { margin-top: auto; display: flex; align-items: end; justify-content: space-between; gap: 14px; }
+      .price b { font-size: 40px; letter-spacing: -1.5px; }
+      .price small { color: var(--muted); font-size: 14px; }
+      .featured .btn { background: #fff; color: var(--ink); }
+
+      .cta { max-width: 1200px; margin: 0 auto; border-radius: 34px; padding: 70px 6vw; text-align: center; color: #fff; background: radial-gradient(80% 120% at 20% 0%, #6d64ff, transparent 60%), radial-gradient(80% 120% at 100% 100%, #06b6d4, transparent 60%), var(--ink); }
+      .cta p { opacity: .75; margin: 16px auto 34px; max-width: 520px; font-size: 18px; line-height: 1.6; }
+      .cta .btn { background: #fff; color: var(--ink); }
+      footer { display: flex; justify-content: space-between; padding: 30px 6vw 40px; color: var(--muted); font-size: 14px; }
+      footer a { color: var(--accent); font-weight: 600; }
+      @media (max-width: 900px) { .links { display: none; } .services { grid-template-columns: 1fr; } h1 { letter-spacing: -2px; } }
+    </style>
+  </head>
+  <body>
+    <canvas id="field"></canvas>
+    <nav>
+      <div class="logo"><i></i>Fred Studio</div>
+      <div class="links"><a href="#services">Services</a><a href="#services">Pricing</a><a href="#contact">Contact</a></div>
+      <a class="btn" href="#contact">Book a call</a>
+    </nav>
+
+    <main>
+      <header class="hero">
+        <div class="pill"><b>New</b> Now booking projects for next month</div>
+        <h1>Digital services that make your brand <span>impossible to ignore</span>.</h1>
+        <p class="lead">Branding, websites and social content, delivered fast by one focused team. Pick a service, we handle the rest.</p>
+        <div class="ctas">
+          <a class="btn" href="#services">See services & prices →</a>
+          <a class="btn light" href="#contact">Get a free quote</a>
+        </div>
+        <div class="trust"><span>NORTHWIND</span><span>LUMA</span><span>KIWI&CO</span><span>ORBITAL</span><span>BRAVO</span></div>
+      </header>
+
+      <section id="services">
+        <div class="head"><small>Services</small><h2>Choose what you need</h2></div>
+        <div class="services">
+          <article class="card">
+            <div class="icon">✦</div>
+            <h3>Brand Identity</h3>
+            <p>A logo and visual system that makes you recognisable everywhere.</p>
+            <ul><li>Logo + 2 variations</li><li>Colour palette & typography</li><li>Brand guidelines PDF</li></ul>
+            <div class="price"><div><b>$490</b> <small>one-time</small></div><a class="btn light" href="#contact">Order</a></div>
+          </article>
+          <article class="card featured">
+            <div class="icon">◎</div>
+            <h3>Business Website</h3>
+            <p>A fast, modern website designed to turn visitors into customers.</p>
+            <ul><li>Up to 6 custom pages</li><li>Mobile-first & SEO-ready</li><li>Hosting for 1 year</li></ul>
+            <div class="price"><div><b>$1,200</b> <small>one-time</small></div><a class="btn" href="#contact">Order</a></div>
+          </article>
+          <article class="card">
+            <div class="icon">▲</div>
+            <h3>Social Media Kit</h3>
+            <p>Scroll-stopping posts and stories, ready to publish every week.</p>
+            <ul><li>12 posts + 8 stories</li><li>Captions & hashtags</li><li>Monthly content plan</li></ul>
+            <div class="price"><div><b>$350</b> <small>/ month</small></div><a class="btn light" href="#contact">Order</a></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="cta">
+          <h2>Ready to grow?</h2>
+          <p>Tell us about your project and get a free, no-commitment quote within 24 hours.</p>
+          <a class="btn" href="#contact">Get my free quote →</a>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>© Fred Studio</span><span>Designed by <a href="/">Fred</a></span></footer>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

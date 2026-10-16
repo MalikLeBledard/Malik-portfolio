@@ -11,6 +11,10 @@ export interface FlexCarouselItem {
   alt: string;
   title?: string;
   subtitle?: string;
+  /** Optional looping video shown instead of the image (src is used as its poster). */
+  video?: string;
+  /** Opened in a new tab when the card is clicked while already centred. */
+  href?: string;
 }
 
 interface FlexCarouselProps {
@@ -43,6 +47,8 @@ interface FlexCarouselProps {
   apiRef?: Ref<FlexCarouselApi>;
   /** Extra content drawn on top of each card (e.g. a like button). */
   renderOverlay?: (item: FlexCarouselItem, index: number) => ReactNode;
+  /** Content pinned to the top-left corner of every card (e.g. a signature). */
+  badge?: ReactNode;
 }
 
 const CARD_ASPECT = 1.55;
@@ -68,6 +74,7 @@ export default function FlexCarousel({
   autoplayInterval = 3000,
   apiRef,
   renderOverlay,
+  badge,
 }: FlexCarouselProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -218,6 +225,11 @@ export default function FlexCarousel({
     if (!focusOnClick || s.dragMoved) return;
     let d = (((i - s.target) % n) + n) % n;
     if (d > n / 2) d -= n;
+    const href = items[i].href;
+    if (href && Math.abs(s.pos - Math.round(s.pos)) < 0.05 && Math.round(d) === 0) {
+      window.open(href, '_blank', 'noopener');
+      return;
+    }
     s.target = Math.round(s.target + d);
   };
 
@@ -244,13 +256,28 @@ export default function FlexCarousel({
           style={{ visibility: 'hidden', willChange: 'transform, width, height' }}
           onClick={() => focusCard(i)}
         >
-          <img
-            src={item.src}
-            alt={item.alt}
-            loading="lazy"
-            draggable={false}
-            className="w-full h-full object-cover pointer-events-none"
-          />
+          {item.video ? (
+            <video
+              src={item.video}
+              poster={item.src}
+              aria-label={item.alt}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-cover pointer-events-none"
+            />
+          ) : (
+            <img
+              src={item.src}
+              alt={item.alt}
+              loading="lazy"
+              draggable={false}
+              className="w-full h-full object-cover pointer-events-none"
+            />
+          )}
+          {badge && <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 pointer-events-none">{badge}</div>}
           {renderOverlay && (
             <div
               className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10"

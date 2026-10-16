@@ -3,43 +3,23 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import FlexCarousel, { type FlexCarouselApi, type FlexCarouselItem } from './FlexCarousel';
 import SlingButton from './SlingButton';
 import PulseHeart from './PulseHeart';
+import { PILL_GRADIENT_STYLE } from './ContactButton';
 
-const BASE = 'https://motionsites.ai/assets/';
-const IMAGES = [
-  'hero-space-voyage-preview-eECLH3Yc.gif',
-  'hero-codenest-preview-Cgppc2qV.gif',
-  'hero-vex-ventures-preview-BczMFIiw.gif',
-  'hero-stellar-ai-v2-preview-DjvxjG3C.gif',
-  'hero-asme-preview-B_nGDnTP.gif',
-  'hero-transform-data-preview-Cx5OU29N.gif',
-  'hero-vitara-preview-Cjz2QYyU.gif',
-  'hero-terra-preview-BFjrCr7T.gif',
-  'hero-skyelite-preview-DHaZIgUv.gif',
-  'hero-aethera-preview-DknSlcTa.gif',
-  'hero-designpro-preview-D8c5_een.gif',
-  'hero-stellar-ai-preview-D3HL6bw1.gif',
-  'hero-xportfolio-preview-D4A8maiC.gif',
-  'hero-orbit-web3-preview-BXt4OttD.gif',
-  'hero-nexora-preview-cx5HmUgo.gif',
-  'hero-evr-ventures-preview-DZxeVFEX.gif',
-  'hero-planet-orbit-preview-DWAP8Z1P.gif',
-  'hero-new-era-preview-CocuDUm9.gif',
-  'hero-wealth-preview-B70idl_u.gif',
-  'hero-luminex-preview-CxOP7ce6.gif',
-  'hero-celestia-preview-0yO3jXO8.gif',
-].map((f) => BASE + f);
+// Fred's own work: demo sites (live under /demos/...) and Airbnb video tours.
+const PROJECTS: FlexCarouselItem[] = [
+  { src: '/showcase/fred-cafe.jpg', alt: 'Fred Café 3D coffee website', title: 'Fred Café', subtitle: '3D website · Live demo ↗', href: '/demos/fred-cafe/' },
+  { src: '/showcase/airbnb-1.jpg', video: '/showcase/airbnb-1.mp4', alt: 'Airbnb 4K video walkthrough', title: 'Modern Family Home', subtitle: 'Airbnb video tour' },
+  { src: '/showcase/fred-croquetta.jpg', alt: 'Fred Croquetta 3D dog food website', title: 'Fred Croquetta', subtitle: '3D website · Live demo ↗', href: '/demos/fred-croquetta/' },
+  { src: '/showcase/fred-plumbing.jpg', alt: 'Fred Plumbing booking app', title: 'Fred Plumbing', subtitle: 'Mobile app · Live demo ↗', href: '/demos/fred-plumbing/' },
+  { src: '/showcase/casa-luma.jpg', alt: 'Casa Luma rental listing website', title: 'Casa Luma', subtitle: 'Airbnb listing · Live demo ↗', href: '/demos/casa-luma/' },
+  { src: '/showcase/fred-studio.jpg', alt: 'Fred Studio agency website', title: 'Fred Studio', subtitle: 'Business website · Live demo ↗', href: '/demos/fred-studio/' },
+];
 
-const ITEMS: FlexCarouselItem[] = IMAGES.map((src) => {
-  const slug = src.split('/').pop()!.replace(/^hero-/, '').replace(/-preview.*$/, '');
-  const title = slug
-    .split('-')
-    .map((w) => (w === 'ai' ? 'AI' : w.charAt(0).toUpperCase() + w.slice(1)))
-    .join(' ');
-  return { src, alt: `${title} website preview`, title };
-});
+// Repeat the list so the ribbon always has cards on both sides of the centre.
+const ITEMS = [...PROJECTS, ...PROJECTS];
 
 // Starting like count per card: a fixed number between 20 and 90 (same on every visit).
-const startLikes = (i: number) => 20 + ((i * 37 + 23) % 71);
+const startLikes = (i: number) => 20 + (((i % PROJECTS.length) * 37 + 23) % 71);
 
 const SLING_PROPS = {
   axis: 'horizontal' as const,
@@ -71,6 +51,14 @@ export default function MarqueeSection() {
           dispersion={0.4}
           autoplay
           apiRef={carousel}
+          badge={
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 sm:px-4 sm:py-1.5 text-white font-black uppercase tracking-wider text-xs sm:text-sm"
+              style={PILL_GRADIENT_STYLE}
+            >
+              ✦ Fred
+            </span>
+          }
           renderOverlay={(_, i) => (
             <PulseHeart count={startLikes(i)} size={22} pillColor="rgba(12, 12, 12, 0.65)" label="Like" />
           )}
