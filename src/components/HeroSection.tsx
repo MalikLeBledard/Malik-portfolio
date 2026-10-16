@@ -1,15 +1,26 @@
 import FadeIn from './FadeIn';
-import Magnet from './Magnet';
+import LiquidEther from './LiquidEther';
 import ContactButton, { PILL_GRADIENT_STYLE } from './ContactButton';
 
 const NAV_LINKS = ['About', 'Price', 'Projects', 'Contact'];
 const PILL_LINKS = ['About', 'Price', 'Projects'];
-const PORTRAIT = '/fred.png';
 
 export default function HeroSection() {
   return (
     <section className="relative h-screen flex flex-col" style={{ overflowX: 'clip' }}>
-      <FadeIn as="nav" delay={0} y={-20} className="flex justify-between items-center px-6 md:px-10 pt-6 md:pt-8">
+      <div className="absolute inset-0 z-0">
+        <LiquidEther
+          colors={['#5227FF', '#FF9FFC', '#B497CF']}
+          mouseForce={20}
+          cursorSize={100}
+          resolution={0.5}
+          autoDemo
+          autoSpeed={0.5}
+          autoIntensity={2.2}
+        />
+      </div>
+
+      <FadeIn as="nav" delay={0} y={-20} className="relative z-10 flex justify-between items-center px-6 md:px-10 pt-6 md:pt-8">
         {NAV_LINKS.map((link) =>
           PILL_LINKS.includes(link) ? (
             <a
@@ -32,7 +43,7 @@ export default function HeroSection() {
         )}
       </FadeIn>
 
-      <div className="overflow-hidden">
+      <div className="relative z-10 overflow-hidden pointer-events-none">
         <FadeIn delay={0.15} y={40}>
           <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-center text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] mt-6 sm:mt-4 md:-mt-5">
             Hi, i&apos;m fred
@@ -54,18 +65,6 @@ export default function HeroSection() {
         </FadeIn>
       </div>
 
-      <div className="absolute left-1/2 -translate-x-1/2 z-10 w-[280px] sm:w-[360px] md:w-[440px] lg:w-[520px] top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0">
-        <FadeIn delay={0.6} y={30}>
-          <Magnet
-            padding={150}
-            strength={3}
-            activeTransition="transform 0.3s ease-out"
-            inactiveTransition="transform 0.6s ease-in-out"
-          >
-            <img src={PORTRAIT} alt="Fred portrait" className="w-full h-auto select-none" draggable={false} />
-          </Magnet>
-        </FadeIn>
-      </div>
     </section>
   );
 }
