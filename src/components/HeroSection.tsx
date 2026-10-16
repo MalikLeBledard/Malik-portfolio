@@ -1,13 +1,19 @@
 import FadeIn from './FadeIn';
+import ContactButton from './ContactButton';
 import LiquidEther from './LiquidEther';
-import ContactButton, { PILL_GRADIENT_STYLE } from './ContactButton';
+import GooeyNav from './GooeyNav';
+import ProfileCard from './ProfileCard';
 
-const NAV_LINKS = ['About', 'Price', 'Projects', 'Contact'];
-const PILL_LINKS = ['About', 'Price', 'Projects'];
+const NAV_ITEMS = [
+  { label: 'About', href: '#about' },
+  { label: 'Price', href: '#price' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+];
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen flex flex-col" style={{ overflowX: 'clip' }}>
+    <section className="relative h-screen min-h-[640px] flex flex-col" style={{ overflowX: 'clip' }}>
       <div className="absolute inset-0 z-0">
         <LiquidEther
           colors={['#5227FF', '#FF9FFC', '#B497CF']}
@@ -20,32 +26,13 @@ export default function HeroSection() {
         />
       </div>
 
-      <FadeIn as="nav" delay={0} y={-20} className="relative z-10 flex justify-between items-center px-6 md:px-10 pt-6 md:pt-8">
-        {NAV_LINKS.map((link) =>
-          PILL_LINKS.includes(link) ? (
-            <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
-              className="rounded-full text-white font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.4rem] px-3 py-1.5 sm:px-5 sm:py-2 md:px-7 md:py-2.5 transition-transform duration-200 hover:scale-[1.05]"
-              style={PILL_GRADIENT_STYLE}
-            >
-              {link}
-            </a>
-          ) : (
-            <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
-              className="text-[#D7E2EA] font-medium uppercase tracking-wider text-xs sm:text-sm md:text-lg lg:text-[1.4rem] transition-opacity duration-200 hover:opacity-70"
-            >
-              {link}
-            </a>
-          )
-        )}
+      <FadeIn as="header" delay={0} y={-20} className="relative z-20 flex justify-center px-4 md:px-10 pt-6 md:pt-8">
+        <GooeyNav items={NAV_ITEMS} initialActiveIndex={0} size="md" />
       </FadeIn>
 
       <div className="relative z-10 overflow-hidden pointer-events-none">
         <FadeIn delay={0.15} y={40}>
-          <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-center text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] mt-6 sm:mt-4 md:-mt-5">
+          <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-center text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] mt-6 sm:mt-4 md:-mt-2">
             Hi, i&apos;m fred
           </h1>
         </FadeIn>
@@ -65,6 +52,20 @@ export default function HeroSection() {
         </FadeIn>
       </div>
 
+      <div className="absolute left-1/2 -translate-x-1/2 z-10 w-[240px] sm:w-[270px] lg:w-[300px] top-1/2 -translate-y-[42%]">
+        <FadeIn delay={0.6} y={30}>
+          <ProfileCard
+            avatarUrl="/fred.png"
+            name="Malik Fred"
+            title="Creator"
+            handle="malikfred"
+            status="Online"
+            contactText="Contact"
+            onContactClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+            theme="dark"
+          />
+        </FadeIn>
+      </div>
     </section>
   );
 }
