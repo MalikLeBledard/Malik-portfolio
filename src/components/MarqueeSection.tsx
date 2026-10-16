@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import FlexCarousel, { type FlexCarouselItem } from './FlexCarousel';
 
 const BASE = 'https://motionsites.ai/assets/';
 const IMAGES = [
@@ -25,55 +25,37 @@ const IMAGES = [
   'hero-celestia-preview-0yO3jXO8.gif',
 ].map((f) => BASE + f);
 
-const ROW_1 = IMAGES.slice(0, 11);
-const ROW_2 = IMAGES.slice(11);
-const ROW_1_TRIPLED = [...ROW_1, ...ROW_1, ...ROW_1];
-const ROW_2_TRIPLED = [...ROW_2, ...ROW_2, ...ROW_2];
-
-function Row({ images, transform }: { images: string[]; transform: string }) {
-  return (
-    <div className="flex gap-3 w-max" style={{ transform, willChange: 'transform' }}>
-      {images.map((src, i) => (
-        <img
-          key={i}
-          src={src}
-          alt=""
-          loading="lazy"
-          className="w-[420px] h-[270px] rounded-2xl object-cover flex-shrink-0"
-        />
-      ))}
-    </div>
-  );
-}
+const ITEMS: FlexCarouselItem[] = IMAGES.map((src) => {
+  const slug = src.split('/').pop()!.replace(/^hero-/, '').replace(/-preview.*$/, '');
+  const title = slug
+    .split('-')
+    .map((w) => (w === 'ai' ? 'AI' : w.charAt(0).toUpperCase() + w.slice(1)))
+    .join(' ');
+  return { src, alt: `${title} website preview`, title };
+});
 
 export default function MarqueeSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [offset, setOffset] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const el = sectionRef.current;
-      if (!el) return;
-      const sectionTop = el.getBoundingClientRect().top + window.scrollY;
-      setOffset((window.scrollY - sectionTop + window.innerHeight) * 0.3);
-    };
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="pt-24 sm:pt-32 md:pt-40 pb-10 flex flex-col gap-3 overflow-hidden"
-      style={{ background: '#0C0C0C' }}
-    >
-      <Row images={ROW_1_TRIPLED} transform={`translateX(${offset - 200}px)`} />
-      <Row images={ROW_2_TRIPLED} transform={`translateX(${-(offset - 200)}px)`} />
+    <section className="pt-24 sm:pt-32 md:pt-40 pb-10" style={{ background: '#0C0C0C' }}>
+      <div className="relative w-full h-[340px] sm:h-[460px] md:h-[560px]">
+        <FlexCarousel
+          items={ITEMS}
+          preset="ribbon"
+          intro="rise"
+          cardHeight={0.8}
+          gap={12}
+          squeeze={0.2}
+          focusOnClick
+          captions
+          lensWidth={1.13}
+          lensHeight={0.8}
+          tilt={0}
+          roundness={0.67}
+          reach={0.34}
+          dispersion={0.4}
+          autoplay
+        />
+      </div>
     </section>
   );
 }
