@@ -1,5 +1,10 @@
 import { useAnimationFrame, useInView } from 'framer-motion';
-import { useEffect, useRef, type PointerEvent as ReactPointerEvent } from 'react';
+import { useEffect, useImperativeHandle, useRef, type PointerEvent as ReactPointerEvent, type ReactNode, type Ref } from 'react';
+
+export interface FlexCarouselApi {
+  next: () => void;
+  prev: () => void;
+}
 
 export interface FlexCarouselItem {
   src: string;
@@ -34,6 +39,10 @@ interface FlexCarouselProps {
   dispersion?: number;
   autoplay?: boolean;
   autoplayInterval?: number;
+  /** Lets a parent drive the carousel (e.g. external arrow buttons). */
+  apiRef?: Ref<FlexCarouselApi>;
+  /** Extra content drawn on top of each card (e.g. a like button). */
+  renderOverlay?: (item: FlexCarouselItem, index: number) => ReactNode;
 }
 
 const CARD_ASPECT = 1.55;
@@ -57,6 +66,8 @@ export default function FlexCarousel({
   dispersion = 0.4,
   autoplay = true,
   autoplayInterval = 3000,
+  apiRef,
+  renderOverlay,
 }: FlexCarouselProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -197,6 +208,11 @@ export default function FlexCarousel({
     s.target = Math.round(s.target);
   };
 
+  useImperativeHandle(apiRef, () => ({
+    next: () => (state.current.target = Math.round(state.current.target) + 1),
+    prev: () => (state.current.target = Math.round(state.current.target) - 1),
+  }));
+
   const focusCard = (i: number) => {
     const s = state.current;
     if (!focusOnClick || s.dragMoved) return;
@@ -235,6 +251,15 @@ export default function FlexCarousel({
             draggable={false}
             className="w-full h-full object-cover pointer-events-none"
           />
+          {renderOverlay && (
+            <div
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10"
+              onPointerDown={(e) => e.stopPropagation()}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {renderOverlay(item, i)}
+            </div>
+          )}
           {captions && (item.title || item.subtitle) && (
             <div
               ref={(el) => (captionRefs.current[i] = el)}

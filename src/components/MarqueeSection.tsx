@@ -1,4 +1,8 @@
-import FlexCarousel, { type FlexCarouselItem } from './FlexCarousel';
+import { useRef } from 'react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import FlexCarousel, { type FlexCarouselApi, type FlexCarouselItem } from './FlexCarousel';
+import SlingButton from './SlingButton';
+import PulseHeart from './PulseHeart';
 
 const BASE = 'https://motionsites.ai/assets/';
 const IMAGES = [
@@ -34,9 +38,21 @@ const ITEMS: FlexCarouselItem[] = IMAGES.map((src) => {
   return { src, alt: `${title} website preview`, title };
 });
 
+// Starting like count per card: a fixed number between 20 and 90 (same on every visit).
+const startLikes = (i: number) => 20 + ((i * 37 + 23) % 71);
+
+const SLING_PROPS = {
+  axis: 'horizontal' as const,
+  size: 52,
+  accentColor: '#B600A8',
+  bandColor: '#7621B0',
+};
+
 export default function MarqueeSection() {
+  const carousel = useRef<FlexCarouselApi>(null);
+
   return (
-    <section className="pt-24 sm:pt-32 md:pt-40 pb-10" style={{ background: '#0C0C0C' }}>
+    <section id="projects" className="pt-24 sm:pt-32 md:pt-40 pb-10" style={{ background: '#0C0C0C' }}>
       <div className="relative w-full h-[340px] sm:h-[460px] md:h-[560px]">
         <FlexCarousel
           items={ITEMS}
@@ -54,7 +70,20 @@ export default function MarqueeSection() {
           reach={0.34}
           dispersion={0.4}
           autoplay
+          apiRef={carousel}
+          renderOverlay={(_, i) => (
+            <PulseHeart count={startLikes(i)} size={22} pillColor="rgba(12, 12, 12, 0.65)" label="Like" />
+          )}
         />
+      </div>
+
+      <div className="flex justify-center gap-10 sm:gap-14 mt-8 sm:mt-10">
+        <SlingButton {...SLING_PROPS} ariaLabel="Previous project" onSend={() => carousel.current?.prev()}>
+          <ArrowLeft size={22} strokeWidth={2.2} />
+        </SlingButton>
+        <SlingButton {...SLING_PROPS} ariaLabel="Next project" onSend={() => carousel.current?.next()}>
+          <ArrowRight size={22} strokeWidth={2.2} />
+        </SlingButton>
       </div>
     </section>
   );

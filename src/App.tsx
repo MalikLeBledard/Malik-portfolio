@@ -2,7 +2,7 @@ import HeroSection from './components/HeroSection';
 import MarqueeSection from './components/MarqueeSection';
 import AboutSection from './components/AboutSection';
 import ServicesSection from './components/ServicesSection';
-import ProjectsSection from './components/ProjectsSection';
+import PriceSection from './components/PriceSection';
 
 export default function App() {
   return (
@@ -11,7 +11,7 @@ export default function App() {
       <MarqueeSection />
       <AboutSection />
       <ServicesSection />
-      <ProjectsSection />
+      <PriceSection />
     </main>
   );
 }
