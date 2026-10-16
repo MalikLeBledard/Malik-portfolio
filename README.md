@@ -1,4 +1,4 @@
-# Jack -- 3D Creator
+# Fred -- Creator
 
 Site portfolio en React, TypeScript, Tailwind CSS et Framer Motion.
 
