@@ -12,6 +12,8 @@ const PROJECTS: FlexCarouselItem[] = [
   { src: '/showcase/fred-croquetta.jpg', alt: 'Fred Croquetta 3D dog food website', title: 'Fred Croquetta', subtitle: '3D website · Live demo ↗', href: 'https://mk-croquetta.vercel.app/' },
   { src: '/showcase/fred-plumbing.jpg', alt: 'Fred Plumbing booking app', title: 'Fred Plumbing', subtitle: 'Mobile app · Live demo ↗', href: '/demos/fred-plumbing/' },
   { src: '/showcase/casa-luma.jpg', alt: 'Casa Luma rental listing website', title: 'Casa Luma', subtitle: 'Airbnb listing · Live demo ↗', href: '/demos/casa-luma/' },
+  { src: '/showcase/visite-dubai.jpg', alt: 'Business Bay Dubai apartment tour website', title: 'Visite Business Bay', subtitle: 'Property tour website · Live demo ↗', href: 'https://visite-dubai-business-bay.vercel.app/' },
+  { src: '/showcase/visite-marseille.jpg', alt: 'Marseille T2 apartment tour website', title: 'Visite T2 Marseille', subtitle: 'Property tour website · Live demo ↗', href: 'https://visite-marseille-t2.vercel.app/' },
   { src: '/showcase/fred-studio.jpg', alt: 'Fred Studio agency website', title: 'Fred Studio', subtitle: 'Business website · Live demo ↗', href: '/demos/fred-studio/' },
 ];
 
