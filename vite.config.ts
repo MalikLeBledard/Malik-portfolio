@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // Demo sites shown in the portfolio carousel. Each one is its own page, served at /demos/<name>/.
-const DEMOS = ['fred-cafe', 'fred-studio', 'fred-croquetta', 'fred-plumbing', 'casa-luma'];
+const DEMOS = ['fred-cafe', 'fred-studio', 'fred-plumbing', 'casa-luma'];
 
 export default defineConfig({
   plugins: [react()],

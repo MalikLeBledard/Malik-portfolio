@@ -9,7 +9,7 @@ import { PILL_GRADIENT_STYLE } from './ContactButton';
 const PROJECTS: FlexCarouselItem[] = [
   { src: '/showcase/fred-cafe.jpg', alt: 'Fred Café 3D coffee website', title: 'Fred Café', subtitle: '3D website · Live demo ↗', href: '/demos/fred-cafe/' },
   { src: '/showcase/airbnb-1.jpg', video: '/showcase/airbnb-1.mp4', alt: 'Airbnb 4K video walkthrough', title: 'Modern Family Home', subtitle: 'Airbnb video tour' },
-  { src: '/showcase/fred-croquetta.jpg', alt: 'Fred Croquetta 3D dog food website', title: 'Fred Croquetta', subtitle: '3D website · Live demo ↗', href: '/demos/fred-croquetta/' },
+  { src: '/showcase/fred-croquetta.jpg', alt: 'Fred Croquetta 3D dog food website', title: 'Fred Croquetta', subtitle: '3D website · Live demo ↗', href: 'https://mk-croquetta.vercel.app/' },
   { src: '/showcase/fred-plumbing.jpg', alt: 'Fred Plumbing booking app', title: 'Fred Plumbing', subtitle: 'Mobile app · Live demo ↗', href: '/demos/fred-plumbing/' },
   { src: '/showcase/casa-luma.jpg', alt: 'Casa Luma rental listing website', title: 'Casa Luma', subtitle: 'Airbnb listing · Live demo ↗', href: '/demos/casa-luma/' },
   { src: '/showcase/fred-studio.jpg', alt: 'Fred Studio agency website', title: 'Fred Studio', subtitle: 'Business website · Live demo ↗', href: '/demos/fred-studio/' },
