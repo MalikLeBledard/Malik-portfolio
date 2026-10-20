@@ -7,12 +7,12 @@ import { PILL_GRADIENT_STYLE } from './ContactButton';
 
 // Fred's own work: demo sites (live under /demos/...) and Airbnb video tours.
 const PROJECTS: FlexCarouselItem[] = [
-  { src: '/showcase/fred-cafe.jpg', alt: 'Fred Café 3D coffee website', title: 'Fred Café', subtitle: '3D website · Live demo ↗', href: 'https://mk-cofee.vercel.app/' },
+  { src: '/showcase/fred-cafe.jpg', alt: 'Fred Café 3D coffee website', title: 'MK Cofee', subtitle: '3D website · Live demo ↗', href: 'https://mk-cofee.vercel.app/' },
   { src: '/showcase/airbnb-1.jpg', video: '/showcase/airbnb-1.mp4', alt: 'Airbnb 4K video walkthrough', title: 'Modern Family Home', subtitle: 'Airbnb video tour' },
-  { src: '/showcase/fred-croquetta.jpg', alt: 'Fred Croquetta 3D dog food website', title: 'Fred Croquetta', subtitle: '3D website · Live demo ↗', href: 'https://mk-croquetta.vercel.app/' },
+  { src: '/showcase/fred-croquetta.jpg', alt: 'Fred Croquetta 3D dog food website', title: 'MK Croquetta', subtitle: '3D website · Live demo ↗', href: 'https://mk-croquetta.vercel.app/' },
   { src: '/showcase/fred-plumbing.jpg', alt: 'Fred Plumbing booking app', title: 'Fred Plumbing', subtitle: 'Mobile app · Live demo ↗', href: '/demos/fred-plumbing/' },
   { src: '/showcase/casa-luma.jpg', alt: 'Casa Luma rental listing website', title: 'Casa Luma', subtitle: 'Airbnb listing · Live demo ↗', href: '/demos/casa-luma/' },
-  { src: '/showcase/visite-dubai.jpg', alt: 'Business Bay Dubai apartment tour website', title: 'Visite Business Bay', subtitle: 'Property tour website · Live demo ↗', href: 'https://visite-dubai-business-bay.vercel.app/' },
+  { src: '/showcase/visite-dubai.jpg', alt: 'Business Bay Dubai apartment tour website', title: 'Visite Business Bay', subtitle: '360° virtual tour · Live demo ↗', href: 'https://visite-dubai-business-bay.vercel.app/' },
   { src: '/showcase/fred-studio.jpg', alt: 'Fred Studio agency website', title: 'Fred Studio', subtitle: 'Business website · Live demo ↗', href: '/demos/fred-studio/' },
 ];
 
