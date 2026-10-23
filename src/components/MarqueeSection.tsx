@@ -13,6 +13,7 @@ const PROJECTS: FlexCarouselItem[] = [
   { src: '/showcase/fred-plumbing.jpg', alt: 'Fred Plumbing booking app', title: 'Fred Plumbing', subtitle: 'Mobile app · Live demo ↗', href: '/demos/fred-plumbing/' },
   { src: '/showcase/casa-luma.jpg', alt: 'Casa Luma rental listing website', title: 'Casa Luma', subtitle: 'Airbnb listing · Live demo ↗', href: '/demos/casa-luma/' },
   { src: '/showcase/visite-dubai.jpg', alt: 'Business Bay Dubai apartment tour website', title: 'Visite Business Bay', subtitle: '360° virtual tour · Live demo ↗', href: 'https://visite-dubai-business-bay.vercel.app/' },
+  { src: '/showcase/visite-doha.jpg', alt: 'Al Mansoura Doha apartment tour website', title: 'Visite Doha', subtitle: '360° virtual tour · Live demo ↗', href: 'https://visite-doha-mansoura602.vercel.app/' },
   { src: '/showcase/fred-studio.jpg', alt: 'Fred Studio agency website', title: 'Fred Studio', subtitle: 'Business website · Live demo ↗', href: '/demos/fred-studio/' },
 ];
 
