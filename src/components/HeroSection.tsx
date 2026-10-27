@@ -55,7 +55,7 @@ export default function HeroSection() {
       <div className="absolute left-1/2 -translate-x-1/2 z-10 w-[240px] sm:w-[270px] lg:w-[300px] top-1/2 -translate-y-[30%]">
         <FadeIn delay={0.6} y={30}>
           <ProfileCard
-            avatarUrl="/malik.png"
+            avatarUrl="/malik.jpg"
             backdropColor="#7621B0"
             name="Malik Fred"
             title="Creator"
