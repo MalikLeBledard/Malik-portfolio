@@ -4,6 +4,7 @@ import FlexCarousel, { type FlexCarouselApi, type FlexCarouselItem } from './Fle
 import SlingButton from './SlingButton';
 import PulseHeart from './PulseHeart';
 import { PILL_GRADIENT_STYLE } from './ContactButton';
+import FadeIn from './FadeIn';
 
 // Fred's own work: demo sites (live under /demos/...) and Airbnb video tours.
 const PROJECTS: FlexCarouselItem[] = [
@@ -11,7 +12,6 @@ const PROJECTS: FlexCarouselItem[] = [
   { src: '/showcase/airbnb-1.jpg', video: '/showcase/airbnb-1.mp4', alt: 'Airbnb 4K video walkthrough', title: 'Modern Family Home', subtitle: 'Airbnb video tour' },
   { src: '/showcase/fred-croquetta.jpg', alt: 'Fred Croquetta 3D dog food website', title: 'MK Croquetta', subtitle: '3D website · Live demo ↗', href: 'https://mk-croquetta.vercel.app/' },
   { src: '/showcase/fred-plumbing.jpg', alt: 'Fred Plumbing booking app', title: 'Fred Plumbing', subtitle: 'Mobile app · Live demo ↗', href: '/demos/fred-plumbing/' },
-  { src: '/showcase/casa-luma.jpg', alt: 'Casa Luma rental listing website', title: 'Casa Luma', subtitle: 'Airbnb listing · Live demo ↗', href: '/demos/casa-luma/' },
   { src: '/showcase/visite-dubai.jpg', alt: 'Business Bay Dubai apartment tour website', title: 'Visite Business Bay', subtitle: '360° virtual tour · Live demo ↗', href: 'https://visite-dubai-business-bay.vercel.app/' },
   { src: '/showcase/visite-doha.jpg', alt: 'Al Mansoura Doha apartment tour website', title: 'Visite Doha', subtitle: '360° virtual tour · Live demo ↗', href: 'https://visite-doha-mansoura602.vercel.app/' },
   { src: '/showcase/fred-studio.jpg', alt: 'Fred Studio agency website', title: 'Fred Studio', subtitle: 'Business website · Live demo ↗', href: '/demos/fred-studio/' },
@@ -35,6 +35,14 @@ export default function MarqueeSection() {
 
   return (
     <section id="projects" className="pt-24 sm:pt-32 md:pt-40 pb-10" style={{ background: '#0C0C0C' }}>
+      <FadeIn delay={0} y={40}>
+        <h2
+          className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-10 sm:mb-14 md:mb-16"
+          style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+        >
+          Projects
+        </h2>
+      </FadeIn>
       <div className="relative w-full h-[340px] sm:h-[460px] md:h-[560px]">
         <FlexCarousel
           items={ITEMS}
@@ -51,7 +59,7 @@ export default function MarqueeSection() {
           roundness={0.67}
           reach={0.34}
           dispersion={0.4}
-          autoplay
+          autoplay={false}
           apiRef={carousel}
           badge={
             <span

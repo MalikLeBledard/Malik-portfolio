@@ -27,3 +27,33 @@ body,
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Contact button: rotating gradient ring + hover shine */
+@property --contact-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+.contact-btn-ring {
+  background: conic-gradient(from var(--contact-angle), #B600A8, #ffffff, #7621B0, #BE4C00, #B600A8);
+  animation: contact-spin 4s linear infinite;
+}
+.contact-btn-glow {
+  background: conic-gradient(from var(--contact-angle), #B600A8, #7621B0, #BE4C00, #B600A8);
+  filter: blur(14px);
+  opacity: 0.45;
+  z-index: -1;
+  animation: contact-spin 4s linear infinite;
+  transition: opacity 0.3s;
+}
+.contact-btn:hover .contact-btn-glow { opacity: 0.8; }
+.contact-btn-shine {
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+}
+.contact-btn:hover .contact-btn-shine { left: 120%; }
+@keyframes contact-spin { to { --contact-angle: 360deg; } }
+@media (prefers-reduced-motion: reduce) {
+  .contact-btn-ring, .contact-btn-glow { animation: none; }
+}
