@@ -9,6 +9,7 @@ import FadeIn from './FadeIn';
 // Fred's own work: demo sites (live under /demos/...) and Airbnb video tours.
 const PROJECTS: FlexCarouselItem[] = [
   { src: '/showcase/fred-cafe.jpg', alt: 'Fred Café 3D coffee website', title: 'MK Cofee', subtitle: '3D website · Live demo ↗', href: 'https://mk-cofee.vercel.app/' },
+  { src: '/showcase/mk-cafe.jpg', alt: 'MK Café coffee website', title: 'MK Café', subtitle: 'Website · Live demo ↗', href: 'https://mk-cafe-kappa.vercel.app/' },
   { src: '/showcase/airbnb-1.jpg', video: '/showcase/airbnb-1.mp4', alt: 'Airbnb 4K video walkthrough', title: 'Modern Family Home', subtitle: 'Airbnb video tour' },
   { src: '/showcase/fred-croquetta.jpg', alt: 'Fred Croquetta 3D dog food website', title: 'MK Croquetta', subtitle: '3D website · Live demo ↗', href: 'https://mk-croquetta.vercel.app/' },
   { src: '/showcase/fred-plumbing.jpg', alt: 'Fred Plumbing booking app', title: 'Fred Plumbing', subtitle: 'Mobile app · Live demo ↗', href: '/demos/fred-plumbing/' },
